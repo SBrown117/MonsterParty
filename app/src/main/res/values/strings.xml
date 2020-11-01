@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">MonsterParty</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_age">Age</string>
+    <string name="hint_tell_a_little_about_yourself">Tell a little about yourself</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_repeat_password">Repeat Password</string>
+    <string name="search">Search Users</string>
+    <string name="settings">Settings</string>
+    <string name="log_out">Log Out</string>
+    <string name="welcome_to_monster_party">Welcome To Monster Party</string>
+    <string name="log_out_as_username">Log out as</string>
+    <string name="what_s_on_your_mind">What\'s on your mind?</string>
+    <string name="add_an_image">Add an Image?</string>
+
+<!--button resources-->
+    <string name="create">create</string>
+    <string name="load">load</string>
+    <string name="cancel">cancel</string>
+    <string name="submit_post">submit post</string>
+
+    <string-array name="lang_list">
+        <item>Select a language</item>
+        <item>English</item>
+        <item>Spanish</item>
+        <item>Japanese</item>
+    </string-array>
+</resources>
