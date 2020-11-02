@@ -92,10 +92,12 @@ class UserViewModel(private val repository: UserRepository): ViewModel(),Observa
 //    }
 
     private fun insert(user: User) = viewModelScope.launch {
+        Log.d(TAG, "$user")
         repository.insertUser(user)
         statusMessage.value = Event("${user.userName} has been added. Welcome to Monster Party!")
     }
 //    private fun update(user: User) = viewModelScope.launch {
+//          Log.d(TAG, "${user.toString()}")
 //        repository.update(user)
 //        statusMessage.value = Event("${user.userName}, your information is up to date.")
 //    }

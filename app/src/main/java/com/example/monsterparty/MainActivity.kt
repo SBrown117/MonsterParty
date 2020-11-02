@@ -13,8 +13,8 @@ private const val TAG = ".MainActivity"
 const val REQUEST_SETTINGS = 925
 class MainActivity : AppCompatActivity() {
 
-    lateinit var getUsername : String
-    lateinit var getImage : String
+    private var getUsername : String? = null
+    private var getImage : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             Context.MODE_PRIVATE)
         getUsername = sharedPreferences.getString("username","N/A").toString()
         getImage = sharedPreferences.getString("image","N/A").toString()
-        if(getUsername == "N/A" || getImage == "N/A"){
+        if(getUsername == "N/A" || getImage == "N/A" || getUsername == null || getImage == null){
             val intent = Intent()
             intent.setClass(this, LoginActivity::class.java)
             startActivityForResult(intent, REQUEST_SETTINGS)

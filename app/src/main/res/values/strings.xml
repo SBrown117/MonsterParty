@@ -12,13 +12,12 @@
     <string name="welcome_to_monster_party">Welcome To Monster Party</string>
     <string name="log_out_as_username">Log out as</string>
     <string name="what_s_on_your_mind">What\'s on your mind?</string>
-    <string name="add_an_image">Add an Image?</string>
-
-<!--button resources-->
-    <string name="create">create</string>
+    <string name="add_an_image">Add an Profile Picture?</string>
+    <string name="create">create account</string>
     <string name="load">load</string>
     <string name="cancel">cancel</string>
     <string name="submit_post">submit post</string>
+    <string name="password_rule">Your password should have a minimum of 8 characters and contain at least one number, one uppercase and one lowercase letter. You can use special characters.</string>
 
     <string-array name="lang_list">
         <item>Select a language</item>

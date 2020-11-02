@@ -64,12 +64,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/load"
+        android:onClick="getImage"
         app:layout_constraintTop_toBottomOf="@id/ca_et_desc"
         app:layout_constraintLeft_toLeftOf="@id/ca_et_desc"/>
     <ImageView
         android:id="@+id/ca_iv_image"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         app:layout_constraintLeft_toRightOf="@id/ca_btn_image_load"
         app:layout_constraintTop_toBottomOf="@id/ca_et_desc"
         app:layout_constraintRight_toRightOf="parent"
@@ -92,14 +93,22 @@
         android:hint="@string/hint_repeat_password"
         app:layout_constraintTop_toBottomOf="@id/ca_et_password"
         app:layout_constraintLeft_toLeftOf="@id/ca_et_password"/>
+    <TextView
+        android:id="@+id/ca_tv_password_rule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password_rule"
+        app:layout_constraintTop_toBottomOf="@id/ca_et_password_match"
+        app:layout_constraintLeft_toLeftOf="@id/ca_et_password_match"/>
     <Button
         android:id="@+id/ca_btn_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create"
         android:enabled="false"
-        app:layout_constraintTop_toBottomOf="@id/ca_et_password_match"
-        app:layout_constraintLeft_toRightOf="@id/ca_et_password_match"
+        app:layout_constraintTop_toBottomOf="@id/ca_tv_password_rule"
+        app:layout_constraintLeft_toLeftOf="@id/ca_tv_password_rule"
+        app:layout_constraintRight_toRightOf="@id/ca_tv_password_rule"
         android:onClick="@{()->userViewModel.saveUser()"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

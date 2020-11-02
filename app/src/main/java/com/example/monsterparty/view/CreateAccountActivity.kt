@@ -5,7 +5,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
@@ -32,8 +35,15 @@ class CreateAccountActivity: AppCompatActivity() {
         val factory = repository?.let { UserViewModelProvider(it) }
         userViewModel = factory?.let { ViewModelProvider(this,it).get(UserViewModel::class.java)}!!
 
-        userViewModel.createUserLang = ca_spn_lang.onItemSelectedListener.toString()
+        ca_spn_lang.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                userViewModel.createUserLang = ca_spn_lang.getItemAtPosition(position).toString()
+                Log.d(TAG, "onItemSelected: ${userViewModel.createUserLang}")
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
     }
+
 
     fun getImage(view: View){
         val intent = Intent(Intent.ACTION_PICK)
@@ -47,6 +57,7 @@ class CreateAccountActivity: AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             ca_iv_image.setImageURI((photoUri))
             userViewModel.createUserPicture = photoUri!!
+            Log.d(TAG, "onActivityResult: ${userViewModel.createUserPicture}")
         }
     }
 }
