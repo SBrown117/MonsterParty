@@ -1,58 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/lg_tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:text="@string/welcome_to_monster_party"
+        android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/welcome_to_monster_party"
-        android:textSize="25sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/lg_et_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Enter Username"
-        app:layout_constraintTop_toBottomOf="@id/lg_tv_welcome"
         app:layout_constraintLeft_toLeftOf="@id/lg_tv_welcome"
-        app:layout_constraintRight_toRightOf="@id/lg_tv_welcome"/>
+        app:layout_constraintRight_toRightOf="@id/lg_tv_welcome"
+        app:layout_constraintTop_toBottomOf="@id/lg_tv_welcome" />
+
     <EditText
         android:id="@+id/lg_et_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Enter Password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/lg_et_username"
         app:layout_constraintLeft_toLeftOf="@id/lg_et_username"
-        app:layout_constraintRight_toRightOf="@id/lg_et_username"/>
+        app:layout_constraintRight_toRightOf="@id/lg_et_username"
+        app:layout_constraintTop_toBottomOf="@id/lg_et_username" />
+
     <Button
         android:id="@+id/lg_btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="login"
         android:enabled="false"
-        app:layout_constraintTop_toBottomOf="@id/lg_et_password"
+        android:text="login"
         app:layout_constraintLeft_toLeftOf="@id/lg_et_password"
-        app:layout_constraintRight_toRightOf="@id/lg_et_password"/>
+        app:layout_constraintRight_toRightOf="@id/lg_et_password"
+        app:layout_constraintTop_toBottomOf="@id/lg_et_password" />
 
-    <TextView
+    <Button
         android:id="@+id/lg_tv_create_account"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
+        android:layout_height="40dp"
+        android:backgroundTint="#01B0FF"
         android:contextClickable="false"
+        android:onClick="openCreateAccount"
         android:text="New? Create an account here"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         app:layout_constraintLeft_toLeftOf="@id/lg_btn_login"
         app:layout_constraintRight_toRightOf="@id/lg_btn_login"
-        app:layout_constraintTop_toBottomOf="@id/lg_btn_login" />
+        app:layout_constraintTop_toBottomOf="@id/lg_btn_login"
+        app:rippleColor="#01B0FF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

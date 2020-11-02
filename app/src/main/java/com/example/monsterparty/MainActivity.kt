@@ -1,16 +1,26 @@
 package com.example.monsterparty
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import com.example.monsterparty.view.LoginActivity
 
+private const val TAG = ".MainActivity"
+const val REQUEST_SETTINGS = 925
 class MainActivity : AppCompatActivity() {
 
+    lateinit var getUsername : String
+    lateinit var getImage : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        readSharedPreferences()
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -52,5 +62,17 @@ class MainActivity : AppCompatActivity() {
             true
         }
         else -> super.onOptionsItemSelected(item)
+    }
+    private fun readSharedPreferences() {
+        val sharedPreferences = getSharedPreferences(
+            "my_shared_preferences",
+            Context.MODE_PRIVATE)
+        getUsername = sharedPreferences.getString("username","N/A").toString()
+        getImage = sharedPreferences.getString("image","N/A").toString()
+        if(getUsername == "N/A" || getImage == "N/A"){
+            val intent = Intent()
+            intent.setClass(this, LoginActivity::class.java)
+            startActivityForResult(intent, REQUEST_SETTINGS)
+        }
     }
 }
