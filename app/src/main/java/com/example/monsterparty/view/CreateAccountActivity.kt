@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -26,6 +27,13 @@ class CreateAccountActivity: AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
     var photoUri: Uri? = null
 
+    var usernameCheck = false
+    var emailCheck = false
+    var ageCheck = false
+    var spinnerCheck = false
+    var descCheck = false
+    var passCheck = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_account_page)
@@ -38,19 +46,21 @@ class CreateAccountActivity: AppCompatActivity() {
         ca_spn_lang.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 userViewModel.createUserLang = ca_spn_lang.getItemAtPosition(position).toString()
+                spinnerCheck = when(position){
+                    0 -> false
+                    else -> true
+                }
                 Log.d(TAG, "onItemSelected: ${userViewModel.createUserLang}")
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
     }
 
-
     fun getImage(view: View){
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         photoUri = data?.data
