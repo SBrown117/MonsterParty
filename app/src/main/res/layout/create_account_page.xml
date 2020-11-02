@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="userViewModel"
+            type="com.example.monsterparty.viewmodel.UserViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:hint="@string/hint_username"
+        android:text="@={userViewModel.createUserName}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <EditText
@@ -19,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/hint_email"
+        android:text="@={userViewModel.createUserEmail}"
         app:layout_constraintTop_toBottomOf="@id/ca_et_username"
         app:layout_constraintLeft_toLeftOf="@id/ca_et_username"/>
     <EditText
@@ -27,6 +37,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:hint="@string/hint_age"
+        android:text="@={userViewModel.createUserAge}"
         app:layout_constraintTop_toBottomOf="@id/ca_et_email"
         app:layout_constraintLeft_toLeftOf="@id/ca_et_email"/>
     <Spinner
@@ -45,16 +56,33 @@
         android:maxLength="200"
         android:singleLine="false"
         android:textAlignment="viewStart"
-        android:textDirection="firstStrongRtl"
+        android:text="@={userViewModel.createUserDesc}"
         app:layout_constraintLeft_toLeftOf="@id/ca_spn_lang"
         app:layout_constraintTop_toBottomOf="@id/ca_spn_lang" />
+    <Button
+        android:id="@+id/ca_btn_image_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/load"
+        app:layout_constraintTop_toBottomOf="@id/ca_et_desc"
+        app:layout_constraintLeft_toLeftOf="@id/ca_et_desc"/>
+    <ImageView
+        android:id="@+id/ca_iv_image"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:layout_constraintLeft_toRightOf="@id/ca_btn_image_load"
+        app:layout_constraintTop_toBottomOf="@id/ca_et_desc"
+        app:layout_constraintRight_toRightOf="parent"
+        android:onClick="getImage"
+        tools:srcCompat="@tools:sample/avatars"/>
     <EditText
         android:id="@+id/ca_et_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:hint="@string/hint_password"
-        app:layout_constraintTop_toBottomOf="@id/ca_et_desc"
+        android:text="@={userViewModel.createUserPassword}"
+        app:layout_constraintTop_toBottomOf="@id/ca_btn_image_load"
         app:layout_constraintLeft_toLeftOf="@id/ca_et_desc"/>
     <EditText
         android:id="@+id/ca_et_password_match"
@@ -69,7 +97,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create"
+        android:enabled="false"
         app:layout_constraintTop_toBottomOf="@id/ca_et_password_match"
-        app:layout_constraintLeft_toRightOf="@id/ca_et_password_match"/>
+        app:layout_constraintLeft_toRightOf="@id/ca_et_password_match"
+        android:onClick="@{()->userViewModel.saveUser()"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
