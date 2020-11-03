@@ -20,7 +20,7 @@
         android:id="@+id/lg_et_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter Username"
+        android:hint="@string/enter_username"
         app:layout_constraintLeft_toLeftOf="@id/lg_tv_welcome"
         app:layout_constraintRight_toRightOf="@id/lg_tv_welcome"
         app:layout_constraintTop_toBottomOf="@id/lg_tv_welcome" />
@@ -29,7 +29,7 @@
         android:id="@+id/lg_et_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter Password"
+        android:hint="@string/enter_password"
         android:inputType="textPassword"
         app:layout_constraintLeft_toLeftOf="@id/lg_et_username"
         app:layout_constraintRight_toRightOf="@id/lg_et_username"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:text="login"
+        android:text="@string/login"
         app:layout_constraintLeft_toLeftOf="@id/lg_et_password"
         app:layout_constraintRight_toRightOf="@id/lg_et_password"
         app:layout_constraintTop_toBottomOf="@id/lg_et_password" />
@@ -52,12 +52,20 @@
         android:backgroundTint="#01B0FF"
         android:contextClickable="false"
         android:onClick="openCreateAccount"
-        android:text="New? Create an account here"
+        android:text="@string/new_create_an_account_here"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintLeft_toLeftOf="@id/lg_btn_login"
         app:layout_constraintRight_toRightOf="@id/lg_btn_login"
         app:layout_constraintTop_toBottomOf="@id/lg_btn_login"
         app:rippleColor="#01B0FF" />
+    <Button
+        android:id="@+id/lg_btn_clear_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/clear_database"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

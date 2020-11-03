@@ -18,6 +18,11 @@
     <string name="cancel">cancel</string>
     <string name="submit_post">submit post</string>
     <string name="password_rule">Your password should have a minimum of 8 characters and contain at least one number, one uppercase and one lowercase letter. You can use special characters.</string>
+    <string name="new_create_an_account_here">New? Create an account here</string>
+    <string name="login">login</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="clear_database">Clear Database</string>
 
     <string-array name="lang_list">
         <item>Select a language</item>
