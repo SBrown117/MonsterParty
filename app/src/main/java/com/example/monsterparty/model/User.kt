@@ -1,5 +1,6 @@
 package com.example.monsterparty.model
 
+import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -17,29 +18,16 @@ data class User (
         @ColumnInfo(name = "user_pic") var userPicture : String,
 )
 
-//data class UserWithPosts(
-//        @Embedded
-//        val user: User,
-//        @Relation(
-//                parentColumn = "user_id",
-//                entityColumn = "post_owner_id"
-//        )
-//        val posts : List<Post>
-//)
-//@Entity(tableName = "post_table",foreignKeys = [
-//    ForeignKey(
-//            entity = User::class,
-//            parentColumns = arrayOf("user_id"),
-//            childColumns = arrayOf("post_owner_id")
-//    )])
-//data class Post(
-//        @PrimaryKey(autoGenerate = true)
-//        @ColumnInfo(name = "post_id") val postId : Int,
-//        @ColumnInfo(name = "post_owner_id") val postOwnerId : Int,
-//        @ColumnInfo(name = "post_owner_pic") val postOwnerPicture : String,
-//        @ColumnInfo(name = "post_text") val postText : String,
-//        @ColumnInfo(name = "post_picture") val postPicture : String
-//)
+
+@Entity(tableName = "post_table")
+data class Post(
+        @PrimaryKey(autoGenerate = true)
+        @ColumnInfo(name = "post_id") val postId : Int,
+        @ColumnInfo(name = "post_owner_id") val postOwnerId : Int,
+        @ColumnInfo(name = "post_owner_pic") val postOwnerPicture : String,
+        @ColumnInfo(name = "post_text") val postText : String,
+        @ColumnInfo(name = "post_picture") val postPicture : String
+)
 
 /*
 todo

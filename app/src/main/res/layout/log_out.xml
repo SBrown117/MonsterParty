@@ -14,7 +14,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/log_out_as_username"
+        tools:text="@string/log_out_as_username"
         android:textSize="25sp"/>
     <Button
         android:id="@+id/lo_btn_cancel"

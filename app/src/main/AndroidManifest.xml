@@ -13,6 +13,7 @@
         android:theme="@style/Theme.MonsterParty">
         <activity android:name=".view.LoginActivity"/>
         <activity android:name=".view.CreateAccountActivity"/>
+        <activity android:name=".view.LogOutActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

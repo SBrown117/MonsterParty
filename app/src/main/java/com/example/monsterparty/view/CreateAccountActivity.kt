@@ -86,15 +86,25 @@ class CreateAccountActivity: AppCompatActivity() {
             val email = ca_et_email.text.toString().trim()
             val password1 = ca_et_password.text.toString().trim()
             val password2 = ca_et_password_match.text.toString().trim()
-
             checkPassword(password1)
-            checkIfUniqueName(userName)
-            checkIfUniqueEmail(email)
+
+            when(userList.isEmpty()){
+                true -> {
+                    uniqueName = true
+                    uniqueEmail = true
+                }
+                else ->{
+                    checkIfUniqueName(userName)
+                    checkIfUniqueEmail(email)
+                }
+            }
 
             if (password1 != password2) {
                 Toast.makeText(this, "Passwords must match", Toast.LENGTH_LONG).show()
             }else if(!email.contains("@") || !email.contains(".com")|| email.length<8){
                 Toast.makeText(this, "Email is invalid", Toast.LENGTH_LONG).show()
+            }else if (userName.length<8){
+                Toast.makeText(this, "Username is too short", Toast.LENGTH_LONG).show()
             }else if (password1.length<8){
                 Toast.makeText(this, "Password is too short", Toast.LENGTH_LONG).show()
             } else if(!num){

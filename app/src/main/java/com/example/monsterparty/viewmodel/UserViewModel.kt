@@ -103,7 +103,7 @@ class UserViewModel(private val repository: UserRepository): ViewModel(),Observa
     private fun insert(user: User) = viewModelScope.launch {
         Log.d(TAG, "$user")
         repository.insertUser(user)
-        statusMessage.value = Event("${user.userName} has been added. Welcome to Monster Party!")
+        statusMessage.value = Event("${user.userName} has been added to the party")
     }
 //    private fun update(user: User) = viewModelScope.launch {
 //          Log.d(TAG, "${user.toString()}")
@@ -122,11 +122,13 @@ class UserViewModel(private val repository: UserRepository): ViewModel(),Observa
             Log.d(TAG, "reference: $ref")
             ref.putFile(createUserPicture)
             Log.d(TAG, "reference putFile: $createUserPicture")
-
+        Log.d(TAG, "ref.path: ${ref.path}")
+        Log.d(TAG, "ref.storage: ${ref.storage}")
+        Log.d(TAG, "ref.downloadUrl: ${ref.downloadUrl}")
             ref.downloadUrl.addOnSuccessListener {
                 Log.d(TAG, "firebasePicStorage: $it")
             }
-        return createUserPicture.toString()
+        return filename
     }
     fun defaultPic(){
     //https://i.kym-cdn.com/photos/images/facebook/001/398/452/8c1.png
