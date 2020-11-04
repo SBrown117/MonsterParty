@@ -17,10 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.monsterparty.databinding.ActivityMainBinding
 import com.example.monsterparty.model.post.PostDatabase
 import com.example.monsterparty.model.post.PostRepository
-import com.example.monsterparty.view.LogOutActivity
-import com.example.monsterparty.view.LoginActivity
-import com.example.monsterparty.view.PostActivity
-import com.example.monsterparty.view.PostAdapter
+import com.example.monsterparty.view.*
 import com.example.monsterparty.viewmodel.PostViewModel
 import com.example.monsterparty.viewmodel.PostViewModelProvider
 import com.google.firebase.storage.FirebaseStorage
@@ -31,15 +28,15 @@ const val REQUEST_SETTINGS = 925
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var postViewModel: PostViewModel
+    lateinit var postViewModel: PostViewModel
 
     private var getUsername : String? = null
     private var getImage : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        readSharedPreferences()
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        readSharedPreferences()
         val dao = PostDatabase.getInstance(application)?.postDao
         val repository = dao?.let { PostRepository(it) }
         val factory = repository?.let { PostViewModelProvider(it) }
@@ -58,17 +55,24 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.menu_list,menu)
         return true
     }
+
     private fun initRecyclerView(){
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        displayPostList()
-    }
-    private fun displayPostList(){
         postViewModel.posts.observe(this, Observer {
-            binding.recyclerView.adapter = PostAdapter(it)
+            val fragment = PostFragment.createPostFragmentDisplay(it)
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_fragment_container, fragment)
+                    .commit()
         })
     }
+//        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+//        displayPostList()
+//    private fun displayPostList(){
+//        postViewModel.posts.observe(this, Observer {
+//            binding.recyclerView.adapter = PostAdapter(it)
+//        })
+//    }
     //todo Search & Settings Activities
-    var menuIntent = Intent()
+    private var menuIntent = Intent()
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId)
     {
         R.id.menu_search ->{
@@ -92,7 +96,8 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences(
             "monster_party_preferences",
             Context.MODE_PRIVATE)
-        getUsername = sharedPreferences.getString("username","N/A").toString()
+        getUsername = sharedPreferences.getString("username","N/A")
+        Log.d(TAG, "readSharedPreferences: $getUsername")
         getImage = sharedPreferences.getString("image","N/A")
         if(getUsername == "N/A" || getImage == "N/A" || getUsername == null || getImage == null){
             val intent = Intent()
@@ -104,7 +109,7 @@ class MainActivity : AppCompatActivity() {
             val storageRef = FirebaseStorage.getInstance().getReference("MonsterPartyPics/$getImage")
             Log.d(TAG, "storageRef: $storageRef")
             storageRef.downloadUrl.addOnSuccessListener {
-                Glide.with(this).load(it).into(main_iv_user_picture)
+                Glide.with(this).load(it).placeholder(R.drawable.ic_default).into(main_iv_user_picture)
 
             }
         }

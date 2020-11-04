@@ -40,7 +40,8 @@
         android:layout_height="wrap_content"
         android:text="@string/load"
         app:layout_constraintTop_toBottomOf="@id/cp_tv_post_image_text"
-        app:layout_constraintLeft_toLeftOf="@id/cp_tv_post_image_text"/>
+        app:layout_constraintLeft_toLeftOf="@id/cp_tv_post_image_text"
+        android:onClick="getPostImage"/>
     <ImageView
         android:id="@+id/cp_iv_image"
         android:layout_width="60dp"

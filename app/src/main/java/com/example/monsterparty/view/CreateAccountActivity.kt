@@ -178,9 +178,9 @@ class CreateAccountActivity: AppCompatActivity() {
     }
     private fun checkIfUniqueName(user : String){
         Log.d(TAG, "checkIfUniqueName: $userList")
-            for(element in userList)
-                if(user != element.userName)
-                    uniqueName = true
+        for(element in userList)
+            if(user != element.userName)
+                uniqueName = true
     }
     private fun checkIfUniqueEmail(email : String){
         for(element in userList)

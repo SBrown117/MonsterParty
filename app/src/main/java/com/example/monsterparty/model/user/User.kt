@@ -1,9 +1,11 @@
 package com.example.monsterparty.model.user
 
 import android.net.Uri
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "user_table")
 data class User (
@@ -18,7 +20,7 @@ data class User (
         @ColumnInfo(name = "user_pic") var userPicture : String,
 )
 
-
+@Parcelize
 @Entity(tableName = "post_table")
 data class Post(
         @PrimaryKey(autoGenerate = true)
@@ -27,7 +29,7 @@ data class Post(
         @ColumnInfo(name = "post_owner_pic") val postOwnerPicture : String,
         @ColumnInfo(name = "post_text") val postText : String,
         @ColumnInfo(name = "post_picture") val postPicture : String
-)
+): Parcelable
 
 /*
 todo
