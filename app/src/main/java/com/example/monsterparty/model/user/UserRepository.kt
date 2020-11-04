@@ -1,9 +1,8 @@
-package com.example.monsterparty.model
+package com.example.monsterparty.model.user
 
 class UserRepository (private val dao : UserDao){
 
     val users = dao.getAllUsers()
-//    val posts = dao.getAllPosts()
 
     suspend fun insertUser(user: User){
         dao.insertUser(user)
@@ -20,7 +19,4 @@ class UserRepository (private val dao : UserDao){
     suspend fun deleteAll(){
         dao.deleteAll()
     }
-//    suspend fun insertPost(post: Post){
-//        dao.insertPost(post)
-//    }
 }

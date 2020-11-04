@@ -1,4 +1,4 @@
-package com.example.monsterparty.model
+package com.example.monsterparty.model.user
 
 import android.net.Uri
 import androidx.room.ColumnInfo
@@ -23,7 +23,7 @@ data class User (
 data class Post(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "post_id") val postId : Int,
-        @ColumnInfo(name = "post_owner_id") val postOwnerId : Int,
+        @ColumnInfo(name = "post_owner_name") val postOwnerName : String,
         @ColumnInfo(name = "post_owner_pic") val postOwnerPicture : String,
         @ColumnInfo(name = "post_text") val postText : String,
         @ColumnInfo(name = "post_picture") val postPicture : String

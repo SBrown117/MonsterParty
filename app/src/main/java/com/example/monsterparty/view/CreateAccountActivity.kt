@@ -16,9 +16,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.monsterparty.R
 import com.example.monsterparty.databinding.CreateAccountPageBinding
-import com.example.monsterparty.model.User
-import com.example.monsterparty.model.UserDatabase
-import com.example.monsterparty.model.UserRepository
+import com.example.monsterparty.model.user.User
+import com.example.monsterparty.model.user.UserDatabase
+import com.example.monsterparty.model.user.UserRepository
 import com.example.monsterparty.viewmodel.UserViewModel
 import com.example.monsterparty.viewmodel.UserViewModelProvider
 import kotlinx.android.synthetic.main.create_account_page.*
@@ -50,8 +50,8 @@ class CreateAccountActivity: AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.create_account_page)
         val dao = UserDatabase.getInstance(application)?.userDao
         val repository = dao?.let { UserRepository(it) }
-        val factory = repository?.let { UserViewModelProvider(it) }
-        createUserViewModel = factory?.let { ViewModelProvider(this, it).get(UserViewModel::class.java)}!!
+        val provider = repository?.let { UserViewModelProvider(it) }
+        createUserViewModel = provider?.let { ViewModelProvider(this, it).get(UserViewModel::class.java)}!!
         binding.userViewModel = createUserViewModel
         binding.lifecycleOwner = this
 

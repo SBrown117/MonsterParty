@@ -2,18 +2,27 @@ package com.example.monsterparty
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.monsterparty.databinding.ActivityMainBinding
+import com.example.monsterparty.model.post.PostDatabase
+import com.example.monsterparty.model.post.PostRepository
 import com.example.monsterparty.view.LogOutActivity
 import com.example.monsterparty.view.LoginActivity
-import com.google.firebase.ktx.Firebase
+import com.example.monsterparty.view.PostActivity
+import com.example.monsterparty.view.PostAdapter
+import com.example.monsterparty.viewmodel.PostViewModel
+import com.example.monsterparty.viewmodel.PostViewModelProvider
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,22 +30,43 @@ private const val TAG = ".MainActivity"
 const val REQUEST_SETTINGS = 925
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var postViewModel: PostViewModel
+
     private var getUsername : String? = null
     private var getImage : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         readSharedPreferences()
-    }
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        val dao = PostDatabase.getInstance(application)?.postDao
+        val repository = dao?.let { PostRepository(it) }
+        val factory = repository?.let { PostViewModelProvider(it) }
+        postViewModel = factory?.let { ViewModelProvider(this, it).get(PostViewModel::class.java) }!!
 
+        main_btn_post.setOnClickListener(View.OnClickListener {
+            val intent = Intent()
+            intent.setClass(this,PostActivity::class.java)
+            startActivityForResult(intent, REQUEST_SETTINGS)
+        })
+        initRecyclerView()
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         val inflater : MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_list,menu)
         return true
     }
-
+    private fun initRecyclerView(){
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        displayPostList()
+    }
+    private fun displayPostList(){
+        postViewModel.posts.observe(this, Observer {
+            binding.recyclerView.adapter = PostAdapter(it)
+        })
+    }
     //todo Search & Settings Activities
     var menuIntent = Intent()
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId)

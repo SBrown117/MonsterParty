@@ -1,4 +1,4 @@
-package com.example.monsterparty.model
+package com.example.monsterparty.model.user
 
 import android.content.Context
 import androidx.room.Database

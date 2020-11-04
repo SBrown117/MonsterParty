@@ -13,12 +13,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.monsterparty.MainActivity
 import com.example.monsterparty.R
 import com.example.monsterparty.REQUEST_SETTINGS
-import com.example.monsterparty.model.User
-import com.example.monsterparty.model.UserDatabase
-import com.example.monsterparty.model.UserRepository
+import com.example.monsterparty.model.user.User
+import com.example.monsterparty.model.user.UserDatabase
+import com.example.monsterparty.model.user.UserRepository
 import com.example.monsterparty.viewmodel.UserViewModel
 import com.example.monsterparty.viewmodel.UserViewModelProvider
-import kotlinx.android.synthetic.main.create_account_page.*
 import kotlinx.android.synthetic.main.login_page.*
 
 class LoginActivity: AppCompatActivity() {

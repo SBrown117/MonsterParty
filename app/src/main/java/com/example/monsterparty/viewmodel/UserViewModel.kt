@@ -1,9 +1,7 @@
 package com.example.monsterparty.viewmodel
 
-import android.content.Intent
 import android.net.Uri
 import android.util.Log
-import android.view.View
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.lifecycle.LiveData
@@ -11,10 +9,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.monsterparty.Event
-import com.example.monsterparty.model.User
-import com.example.monsterparty.model.UserRepository
-import com.example.monsterparty.view.CreateAccountActivity
-import com.example.monsterparty.view.LoginActivity
+import com.example.monsterparty.model.user.User
+import com.example.monsterparty.model.user.UserRepository
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
 import java.util.*
@@ -46,7 +42,6 @@ class UserViewModel(private val repository: UserRepository): ViewModel(),Observa
 
 
     lateinit var createUserPicture : Uri
-//    lateinit var savedUserPicture : String
 
     @Bindable
     var createUserDesc = MutableLiveData<String>()
@@ -116,20 +111,17 @@ class UserViewModel(private val repository: UserRepository): ViewModel(),Observa
 //    }
 
     private fun firebasePicStorage():String{
-        Log.d(TAG, "firebasePicStorage: Starting")
             val filename = UUID.randomUUID().toString()
             val ref = FirebaseStorage.getInstance().getReference("/MonsterPartyPics/$filename")
-            Log.d(TAG, "reference: $ref")
+
             ref.putFile(createUserPicture)
-            Log.d(TAG, "reference putFile: $createUserPicture")
-        Log.d(TAG, "ref.path: ${ref.path}")
-        Log.d(TAG, "ref.storage: ${ref.storage}")
-        Log.d(TAG, "ref.downloadUrl: ${ref.downloadUrl}")
+
             ref.downloadUrl.addOnSuccessListener {
                 Log.d(TAG, "firebasePicStorage: $it")
             }
         return filename
     }
+    //todo Setup default image properly
     fun defaultPic(){
     //https://i.kym-cdn.com/photos/images/facebook/001/398/452/8c1.png
         val builder = Uri.Builder()
@@ -153,3 +145,12 @@ class UserViewModel(private val repository: UserRepository): ViewModel(),Observa
         statusMessage.value = Event("The database has been cleansed")
     }
 }
+/*
+    Log.d(TAG, "firebasePicStorage: Starting")
+    Log.d(TAG, "reference: $ref")
+    Log.d(TAG, "ref.path: ${ref.path}")
+    Log.d(TAG, "ref.storage: ${ref.storage}")
+    Log.d(TAG, "ref.downloadUrl: ${ref.downloadUrl}")
+    Log.d(TAG, "reference putFile: $createUserPicture")
+
+ */

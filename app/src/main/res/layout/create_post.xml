@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="postViewModel"
+            type="com.example.monsterparty.viewmodel.PostViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
@@ -17,6 +24,7 @@
         android:id="@+id/cp_et_post_text_box"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:text="@={postViewModel.postText}"
         app:layout_constraintTop_toBottomOf="@id/cp_tv_post_text_title"/>
     <TextView
         android:id="@+id/cp_tv_post_image_text"
@@ -33,6 +41,14 @@
         android:text="@string/load"
         app:layout_constraintTop_toBottomOf="@id/cp_tv_post_image_text"
         app:layout_constraintLeft_toLeftOf="@id/cp_tv_post_image_text"/>
+    <ImageView
+        android:id="@+id/cp_iv_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toRightOf="@id/cp_tv_post_image_text"
+        app:layout_constraintRight_toRightOf="@id/cp_btn_submit_post"
+        app:layout_constraintBottom_toTopOf="@id/cp_btn_submit_post"
+        app:layout_constraintTop_toBottomOf="@id/cp_et_post_text_box"/>
     <Button
         android:id="@+id/cp_btn_submit_post"
         android:layout_width="match_parent"
@@ -43,3 +59,4 @@
         app:layout_constraintTop_toBottomOf="@id/cp_btn_load_image"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

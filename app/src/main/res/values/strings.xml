@@ -23,6 +23,7 @@
     <string name="enter_password">Enter Password</string>
     <string name="enter_username">Enter Username</string>
     <string name="clear_database">Clear Database</string>
+    <string name="create_post">Create Post</string>
 
     <string-array name="lang_list">
         <item>Select a language</item>
