@@ -41,7 +41,7 @@ class UserViewModel(private val repository: UserRepository): ViewModel(),Observa
     var createUserPassword = MutableLiveData<String>()
 
 
-    lateinit var createUserPicture : Uri
+    var createUserPicture : Uri? = null
 
     @Bindable
     var createUserDesc = MutableLiveData<String>()
@@ -111,31 +111,36 @@ class UserViewModel(private val repository: UserRepository): ViewModel(),Observa
 //    }
 
     private fun firebasePicStorage():String{
-            val filename = UUID.randomUUID().toString()
-            val ref = FirebaseStorage.getInstance().getReference("/MonsterPartyPics/$filename")
+        val filename = UUID.randomUUID().toString()
+        val ref = FirebaseStorage.getInstance().getReference("/MonsterPartyPics/$filename")
 
-            ref.putFile(createUserPicture)
+        if(createUserPicture == null){
+            return "icon-user-default-420x420.png"
+        }
+        else
+            ref.putFile(createUserPicture!!)
 
-            ref.downloadUrl.addOnSuccessListener {
-                Log.d(TAG, "firebasePicStorage: $it")
-            }
+        ref.downloadUrl.addOnSuccessListener {
+            Log.d(TAG, "firebasePicStorage: $it")
+        }
         return filename
     }
     //todo Setup default image properly
-    fun defaultPic(){
-    //https://i.kym-cdn.com/photos/images/facebook/001/398/452/8c1.png
-        val builder = Uri.Builder()
-        builder.scheme("https")
-            .authority("i.kym-cdn.com")
-            .appendPath("photos")
-            .appendPath("images")
-            .appendPath("facebook")
-            .appendPath("001")
-            .appendPath("398")
-            .appendPath("452")
-            .appendPath("8c1.png")
-        createUserPicture = builder.build()
-    }
+//    fun defaultPic(){
+//        //icon-user-default-420x420.png
+//    //https://i.kym-cdn.com/photos/images/facebook/001/398/452/8c1.png
+//        val builder = Uri.Builder()
+//        builder.scheme("https")
+//            .authority("i.kym-cdn.com")
+//            .appendPath("photos")
+//            .appendPath("images")
+//            .appendPath("facebook")
+//            .appendPath("001")
+//            .appendPath("398")
+//            .appendPath("452")
+//            .appendPath("8c1.png")
+//        createUserPicture = builder.build()
+//    }
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {}
 
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {}

@@ -121,8 +121,6 @@ class CreateAccountActivity: AppCompatActivity() {
                 Toast.makeText(this, "This email is already taken", Toast.LENGTH_LONG).show()
             }
             else {
-                if (ca_iv_image.drawable == null)
-                    createUserViewModel.defaultPic()
                 createUserViewModel.saveUser()
                 val intent = Intent()
                 intent.setClass(this, LoginActivity::class.java)
@@ -147,6 +145,7 @@ class CreateAccountActivity: AppCompatActivity() {
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
     }
+    //icon-user-default-420x420.png
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         photoUri = data?.data

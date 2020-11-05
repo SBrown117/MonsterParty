@@ -16,7 +16,7 @@ interface PostDao {
     @Delete
     suspend fun deletePost(post: Post)
 
-    @Query("SELECT * FROM post_table")
+    @Query("SELECT * FROM post_table ORDER BY post_id DESC")
     fun getAllPosts(): LiveData<List<Post>>
 
     @Query("DELETE FROM post_table")
