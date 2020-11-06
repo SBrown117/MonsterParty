@@ -19,6 +19,7 @@ private const val TAG = ".UserViewModel"
 class UserViewModel(private val repository: UserRepository): ViewModel(),Observable{
     val users = repository.users
     private val statusMessage = MutableLiveData<Event<String>>()
+    private val defaultIcon = "icon-user-default-420x420.png"
 
     val message : LiveData<Event<String>>
         get() = statusMessage
@@ -115,7 +116,7 @@ class UserViewModel(private val repository: UserRepository): ViewModel(),Observa
         val ref = FirebaseStorage.getInstance().getReference("/MonsterPartyPics/$filename")
 
         if(createUserPicture == null){
-            return "icon-user-default-420x420.png"
+            return defaultIcon
         }
         else
             ref.putFile(createUserPicture!!)
@@ -125,22 +126,6 @@ class UserViewModel(private val repository: UserRepository): ViewModel(),Observa
         }
         return filename
     }
-    //todo Setup default image properly
-//    fun defaultPic(){
-//        //icon-user-default-420x420.png
-//    //https://i.kym-cdn.com/photos/images/facebook/001/398/452/8c1.png
-//        val builder = Uri.Builder()
-//        builder.scheme("https")
-//            .authority("i.kym-cdn.com")
-//            .appendPath("photos")
-//            .appendPath("images")
-//            .appendPath("facebook")
-//            .appendPath("001")
-//            .appendPath("398")
-//            .appendPath("452")
-//            .appendPath("8c1.png")
-//        createUserPicture = builder.build()
-//    }
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {}
 
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {}

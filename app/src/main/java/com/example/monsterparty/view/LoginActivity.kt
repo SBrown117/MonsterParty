@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ import com.example.monsterparty.viewmodel.UserViewModel
 import com.example.monsterparty.viewmodel.UserViewModelProvider
 import kotlinx.android.synthetic.main.login_page.*
 
+private const val TAG = "LoginActivity"
 class LoginActivity: AppCompatActivity() {
     private lateinit var userList: List<User>
     private lateinit var loginUserViewModel: UserViewModel
@@ -86,6 +88,7 @@ class LoginActivity: AppCompatActivity() {
     private fun verifyUser(un : String, ps : String){
         var userExists = false
         for (user in userList) {
+            Log.d(TAG, "verifyUser: $user")
             if (un == user.userName && ps == user.userPassword) {
                 val sharedPreferences = getSharedPreferences(
                         "monster_party_preferences",

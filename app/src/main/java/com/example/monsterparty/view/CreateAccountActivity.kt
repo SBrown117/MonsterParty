@@ -69,6 +69,7 @@ class CreateAccountActivity: AppCompatActivity() {
         ca_et_desc.addTextChangedListener(textWatcher)
         ca_et_password.addTextChangedListener(textWatcher)
         ca_et_password_match.addTextChangedListener(textWatcher)
+
         ca_spn_lang.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 createUserViewModel.createUserLang = ca_spn_lang.getItemAtPosition(position).toString()

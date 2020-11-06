@@ -24,6 +24,8 @@
         android:id="@+id/cp_et_post_text_box"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:padding="10dp"
+        android:background="@drawable/et_style"
         android:text="@={postViewModel.postText}"
         app:layout_constraintTop_toBottomOf="@id/cp_tv_post_text_title"/>
     <TextView

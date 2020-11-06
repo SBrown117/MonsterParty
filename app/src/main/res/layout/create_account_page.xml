@@ -16,17 +16,21 @@
 
     <EditText
         android:id="@+id/ca_et_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
         android:layout_margin="15dp"
+        android:padding="10dp"
+        android:background="@drawable/et_style"
         android:hint="@string/hint_username"
         android:text="@={userViewModel.createUserName}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <EditText
         android:id="@+id/ca_et_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:background="@drawable/et_style"
         android:hint="@string/hint_email"
         android:text="@={userViewModel.createUserEmail}"
         app:layout_constraintTop_toBottomOf="@id/ca_et_username"
@@ -34,7 +38,9 @@
     <EditText
         android:id="@+id/ca_et_age"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:background="@drawable/et_style"
         android:inputType="number"
         android:hint="@string/hint_age"
         android:text="@={userViewModel.createUserAge}"
@@ -42,8 +48,9 @@
         app:layout_constraintLeft_toLeftOf="@id/ca_et_email"/>
     <Spinner
         android:id="@+id/ca_spn_lang"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/et_style"
         android:entries="@array/lang_list"
         app:layout_constraintTop_toBottomOf="@id/ca_et_age"
         app:layout_constraintLeft_toLeftOf="@id/ca_et_age"/>
@@ -52,10 +59,12 @@
         android:id="@+id/ca_et_desc"
         android:layout_width="350dp"
         android:layout_height="100dp"
-        android:hint="@string/hint_tell_a_little_about_yourself"
+        android:padding="10dp"
+        android:background="@drawable/et_style"
         android:maxLength="200"
         android:singleLine="false"
         android:textAlignment="viewStart"
+        android:hint="@string/hint_tell_a_little_about_yourself"
         android:text="@={userViewModel.createUserDesc}"
         app:layout_constraintLeft_toLeftOf="@id/ca_spn_lang"
         app:layout_constraintTop_toBottomOf="@id/ca_spn_lang" />
@@ -78,8 +87,10 @@
         tools:srcCompat="@tools:sample/avatars"/>
     <EditText
         android:id="@+id/ca_et_password"
-        android:layout_width="wrap_content"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/et_style"
         android:inputType="textPassword"
         android:hint="@string/hint_password"
         android:text="@={userViewModel.createUserPassword}"
@@ -87,8 +98,10 @@
         app:layout_constraintLeft_toLeftOf="@id/ca_et_desc"/>
     <EditText
         android:id="@+id/ca_et_password_match"
-        android:layout_width="wrap_content"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/et_style"
         android:inputType="textPassword"
         android:hint="@string/hint_repeat_password"
         app:layout_constraintTop_toBottomOf="@id/ca_et_password"

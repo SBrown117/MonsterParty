@@ -3,15 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/threemonsters">
 
     <TextView
         android:id="@+id/lg_tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:background="#66000000"
+        android:fontFamily="serif"
         android:text="@string/welcome_to_monster_party"
+        android:textColor="@color/white"
         android:textSize="25sp"
+        android:textStyle="italic"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,7 +25,10 @@
         android:id="@+id/lg_et_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/et_style"
+        android:backgroundTint="#DDFFFFFF"
         android:hint="@string/enter_username"
+        android:padding="10dp"
         app:layout_constraintLeft_toLeftOf="@id/lg_tv_welcome"
         app:layout_constraintRight_toRightOf="@id/lg_tv_welcome"
         app:layout_constraintTop_toBottomOf="@id/lg_tv_welcome" />
@@ -29,8 +37,12 @@
         android:id="@+id/lg_et_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/et_style"
+        android:backgroundTint="#DDFFFFFF"
         android:hint="@string/enter_password"
         android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="#000000"
         app:layout_constraintLeft_toLeftOf="@id/lg_et_username"
         app:layout_constraintRight_toRightOf="@id/lg_et_username"
         app:layout_constraintTop_toBottomOf="@id/lg_et_username" />
@@ -59,13 +71,15 @@
         app:layout_constraintRight_toRightOf="@id/lg_btn_login"
         app:layout_constraintTop_toBottomOf="@id/lg_btn_login"
         app:rippleColor="#01B0FF" />
+
     <Button
         android:id="@+id/lg_btn_clear_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/clear_database"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
