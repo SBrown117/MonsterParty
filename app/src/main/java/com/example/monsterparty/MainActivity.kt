@@ -42,12 +42,13 @@ class MainActivity : AppCompatActivity() {
         val factory = repository?.let { PostViewModelProvider(it) }
         postViewModel = factory?.let { ViewModelProvider(this, it).get(PostViewModel::class.java) }!!
 
+        initRecyclerView()
+
         main_btn_post.setOnClickListener(View.OnClickListener {
             val intent = Intent()
             intent.setClass(this,PostActivity::class.java)
             startActivityForResult(intent, REQUEST_SETTINGS)
         })
-        initRecyclerView()
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)

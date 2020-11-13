@@ -16,7 +16,7 @@
 
     <EditText
         android:id="@+id/ca_et_username"
-        android:layout_width="125dp"
+        android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_margin="15dp"
         android:padding="10dp"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
     <EditText
         android:id="@+id/ca_et_email"
-        android:layout_width="125dp"
+        android:layout_width="300dp"
         android:layout_height="40dp"
         android:padding="10dp"
         android:background="@drawable/et_style"
@@ -37,7 +37,7 @@
         app:layout_constraintLeft_toLeftOf="@id/ca_et_username"/>
     <EditText
         android:id="@+id/ca_et_age"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="40dp"
         android:padding="10dp"
         android:background="@drawable/et_style"
@@ -49,7 +49,7 @@
     <Spinner
         android:id="@+id/ca_spn_lang"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:background="@drawable/et_style"
         android:entries="@array/lang_list"
         app:layout_constraintTop_toBottomOf="@id/ca_et_age"
@@ -78,9 +78,9 @@
         app:layout_constraintLeft_toLeftOf="@id/ca_et_desc"/>
     <ImageView
         android:id="@+id/ca_iv_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:layout_constraintLeft_toRightOf="@id/ca_btn_image_load"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        app:layout_constraintLeft_toRightOf="@id/ca_et_password"
         app:layout_constraintTop_toBottomOf="@id/ca_et_desc"
         app:layout_constraintRight_toRightOf="parent"
         android:onClick="getImage"

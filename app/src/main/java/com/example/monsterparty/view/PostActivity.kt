@@ -60,9 +60,7 @@ class PostActivity: AppCompatActivity() {
             val un = sharedPreferences.getString("username","N/A").toString()
             val im = sharedPreferences.getString("image","N/A").toString()
             createPostViewModel.savePost(un,im)
-            val intent = Intent()
-            intent.setClass(this, MainActivity::class.java)
-            startActivityForResult(intent,89)
+            return2Main()
         })
     }
 
@@ -87,5 +85,10 @@ class PostActivity: AppCompatActivity() {
     }
     private fun buttonCheck(){
         cp_btn_submit_post.isEnabled = (cp_et_post_text_box.text.toString().isNotEmpty() || cp_iv_image.drawable != null)
+    }
+    private fun return2Main(){
+        val intent = Intent()
+        intent.setClass(this, MainActivity::class.java)
+        startActivityForResult(intent,89)
     }
 }
